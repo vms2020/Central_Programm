@@ -1,3 +1,6 @@
+import com.android.build.gradle.internal.packaging.defaultExcludes
+import org.jetbrains.kotlin.js.inline.clean.removeDuplicateImports
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -9,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.one.two.centralprogramm"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -59,6 +62,23 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    //implementation(files("../libfetch/lib/build/libs/lib-fat.jar"))
+    implementation(group="org.example",name="lib",ext="jar")
+    implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+    implementation ("io.ktor:ktor-serialization-kotlinx-json:2.3.10")
+    implementation ("io.ktor:ktor-client-android:2.3.10")
+    implementation ("io.ktor:ktor-client-content-negotiation:2.3.10")
+    implementation ("io.ktor:ktor-client-logging:2.3.10")
+    implementation ("org.slf4j:slf4j-simple:2.0.13")
+    implementation(kotlin("reflect"))
+
+
+    //{
+//        exclude(group: "com.google.android.gms", module: "play-services-measurement-base")
+    //  }
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -67,5 +87,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    implementation(project(":libfetch:lib"))
+}
+
+tasks.create<Exec>("MyTask") {
+    commandLine("./gradlew", "jar")
+        .setWorkingDir("$rootDir/libfetch")
 }

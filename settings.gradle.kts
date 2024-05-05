@@ -13,7 +13,12 @@ pluginManagement {
 }
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    //repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+
     repositories {
+        flatDir {
+            dirs(rootDir.absolutePath +"/libfetch/lib/build/libs")
+        }
         google()
         mavenCentral()
     }
@@ -21,6 +26,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "Central Programm"
 include(":app")
-include(":libfetch:lib")
+//include(":libfetch:lib")
 //project(":libfetch").projectDir=file(File(rootDir,"libfetch"))
 
