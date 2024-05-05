@@ -21,3 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "Central Programm"
 include(":app")
+include(":libfetch:lib")
+//project(":libfetch").projectDir=file(File(rootDir,"libfetch"))
+

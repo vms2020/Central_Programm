@@ -1,0 +1,3 @@
+[submodule "libfetch"]
+	path = libfetch
+	url = https://gitlab.com/vmsev2017/libfetch.git
